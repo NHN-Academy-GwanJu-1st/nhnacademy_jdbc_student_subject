@@ -2,11 +2,10 @@ package com.nhnacademy.repository;
 
 import com.nhnacademy.domain.User;
 
+import java.util.Optional;
+
 public interface UserRepository {
 
-    boolean exist(Long id);
-
-    User getUser(Long id);
-
-    boolean match(Long id, String userName, String password);
+    boolean exist(String userName);
+    User getUser(String userName);
 }

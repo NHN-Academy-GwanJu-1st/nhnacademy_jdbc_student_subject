@@ -1,6 +1,7 @@
 package com.nhnacademy.config;
 
 import com.nhnacademy.controller.ControllerBase;
+import com.nhnacademy.interceptor.LoginCheckInterceptor;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -9,8 +10,6 @@ import org.springframework.context.MessageSourceAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.multipart.MultipartResolver;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -39,17 +38,8 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware, Mes
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-//        registry.addInterceptor(new ClientCheckInterceptor()).addPathPatterns("/client", "/client/**");
-//        registry.addInterceptor(new AdminCheckInterceptor()).addPathPatterns("/admin", "/admin/**");
+        registry.addInterceptor(new LoginCheckInterceptor()).addPathPatterns("/course", "/course/**");
     }
-
-//    @Bean
-//    public MultipartResolver multipartResolver() {
-//        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
-//        multipartResolver.setMaxUploadSize(-1);
-//
-//        return multipartResolver;
-//    }
 
     @Bean
     public ThymeleafViewResolver thymeleafViewResolver() {

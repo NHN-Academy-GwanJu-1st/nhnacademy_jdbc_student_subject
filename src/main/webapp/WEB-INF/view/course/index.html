@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>NHN Academy Course 목록</h1>
+
+<table width="1000px">
+    <thead>
+        <tr>
+            <td>번호</td>
+            <td>선생이름</td>
+            <td>과목이름</td>
+            <td>생성시간</td>
+            <td>수정</td>
+            <td>삭제</td>
+        </tr>
+    </thead>
+
+    <tbody>
+        <th:block th:each="course : ${courses}">
+            <tr>
+                <td th:text="${course.id}"></td>
+                <td th:text="${course.teacher.name}"></td>
+                <td th:text="${course.subject.name}"></td>
+                <td th:text="${course.createdAt}"></td>
+                <td>
+                    <a th:href="'/course/modify/' + ${course.id}">수정</a>
+                </td>
+                <td>
+                    <a th:href="'/course/delete/' + ${course.id}">삭제</a>
+                </td>
+            </tr>
+        </th:block>
+    </tbody>
+</table>
+
+<br>
+<br>
+
+<a href="/course/register">등록하기</a>
+
+</body>
+</html>
